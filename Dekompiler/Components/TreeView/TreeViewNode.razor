@@ -1,0 +1,57 @@
+﻿@using System.Diagnostics.CodeAnalysis
+@inject ThemeConfiguration Theme
+
+<div class="flex
+            flex-col">
+
+    <div class="flex pl-[@(Indent)px] items-center hover:bg-[@Theme.Secondary] gap-x-2">
+        @* gives important boundary when child content overflows. *@
+        <div class="w-2.5">
+            @if (Model.Nodes.Count > 0)
+            {
+                <Icon fill="@Theme.Icon" Data="@(Model.Toggled ? Icons.CaretDown : Icons.CaretRight)" class="opacity-60 hover:cursor-pointer" width="10px" id="node_toggle" @onclick="Toggle"/>
+            }
+            else
+            {
+                <Icon Data="Icons.VerticalGrip" width="12px" height="12px" id="node_grip"/>
+            }
+        </div>
+        @* gives important boundary when child content overflows. *@
+        <div class="w-5">
+            <Icon Data="Model.Icon" width="20px" id="node_icon"/>
+        </div>
+        <span class="text-[10pt] whitespace-nowrap hover:cursor-pointer" id="node_content" @onclick="InvokeAction">
+            @Model.ChildContent()
+        </span>
+    </div>
+
+    @if (Model.Nodes.Count > 0 && Model.Toggled)
+    {
+        <div class="flex flex-col gap-y-0.5">
+            @foreach (var node in Model.Nodes)
+            {
+                <TreeViewNode Model="@node" Indent="@(Indent + 20)"/>
+            }
+        </div>
+    }
+
+</div>
+
+@code {
+
+    [Parameter]
+    public int Indent { get; set; } = 10;
+
+    [Parameter]
+    [NotNull]
+    public TreeViewNodeModel? Model { get; set; }
+
+    private void InvokeAction() => Model.Action();
+
+    private void Toggle()
+    {
+        Model.Toggled = !Model.Toggled;
+        StateHasChanged();
+    }
+
+}

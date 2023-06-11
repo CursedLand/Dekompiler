@@ -1,0 +1,15 @@
+﻿@page "/"
+
+@inject RendererService Renderer
+
+<CascadingValue Value="this">
+    <main class="flex
+                 flex-col lg:flex-row
+                 m-2 lg:m-5
+                 gap-2 lg:gap-5">
+
+        <TreeView @ref="_treeView"/>
+        <CodeView @ref="_codeView"/>
+
+    </main>
+</CascadingValue>

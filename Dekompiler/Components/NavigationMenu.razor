@@ -1,0 +1,10 @@
+﻿@inject ThemeConfiguration Theme
+
+<nav class="sticky top-0 z-40 flex px-4 py-2.5 bg-[@Theme.Primary] border-[@Theme.Border] border-b">
+    <a id="branding" class="flex gap-x-2 items-center" href="/">
+        <Icon fill="@Theme.Branding" width="42px" Data="Icons.Brand"/>
+        <span class="font-semibold text-2xl text-[@Theme.Icon]">
+            Dekompiler
+        </span>
+    </a>
+</nav>

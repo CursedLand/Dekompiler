@@ -1,0 +1,60 @@
+﻿@using Index = Dekompiler.Pages.Index
+@using System.Diagnostics.CodeAnalysis
+@inject ThemeConfiguration Theme
+
+<div class="flex
+            flex-col
+            w-full lg:w-1/5
+            h-fit lg:h-[89vh]
+            max-h-[40vh] lg:max-h-[89vh]
+            bg-[@Theme.Primary]
+            border
+            border-[@Theme.Border]
+            rounded-xl
+            lg:rounded-br-none
+            drop-shadow
+            select-none
+            overflow-auto
+            lg:resize-x" id="explorer">
+
+    <div class="flex rounded-xl bg-[@Theme.Primary]" id="explorer_header">
+        <span class="font-medium py-2.5 px-6">Assembly Explorer</span>
+        <div class="flex items-center grow border-b border-l border-[@Theme.Border] rounded-bl-xl rounded-tr-xl bg-[@Theme.Secondary]">
+            <div class="grow"></div>
+            <InputFile id="fileInput" OnChange="@(async (arg) => await Parent!.LoadAssembly(arg))" hidden multiple accept=".exe, .dll"/>
+            <label for="fileInput" class="hover:cursor-pointer">
+                <Icon Data="Icons.AddFile" fill="@Theme.Icon" width="16px" class="mr-3"/>
+            </label>
+        </div>
+    </div>
+
+    <div class="flex flex-col py-2.5 gap-y-0.5" id="explorer_content">
+        @foreach (var node in Nodes)
+        {
+            <TreeViewNode Model="node"/>
+        }
+    </div>
+
+</div>
+
+@code {
+
+    [CascadingParameter]
+    private Index? Parent { get; set; }
+
+    private List<TreeViewNodeModel> _nodes = new();
+
+    [Parameter]
+    public List<TreeViewNodeModel> Nodes
+    {
+        get => _nodes;
+        set => _nodes = value;
+    }
+
+    public void SetNodes(List<TreeViewNodeModel> nodes)
+    {
+        Nodes = nodes;
+        StateHasChanged();
+    }
+
+}

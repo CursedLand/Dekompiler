@@ -1,0 +1,49 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="@Data.ViewBox" @attributes="@AdditionalAttributes">
+    @foreach (var svgChild in Data.PathInfos)
+    {
+        if (svgChild is Icons.PathInfo p)
+        {
+            @RenderPath(p)
+        }
+        else
+        {
+            @RenderG((Icons.GInfo)svgChild)
+        }
+    }
+</svg>
+
+
+@code {
+
+    [Parameter]
+    public Icons.IconInfo Data { get; set; }
+
+    [Parameter(CaptureUnmatchedValues = true)]
+    public IReadOnlyDictionary<string, object>? AdditionalAttributes { get; set; }
+
+    private RenderFragment RenderPath(Icons.PathInfo pathInfo)
+    {
+        if (pathInfo.Class is null)
+        {
+            return @<path d="@pathInfo.Data"/>;
+        }
+        else
+        {
+            return @<path d="@pathInfo.Data" class="@pathInfo.Class"/>;
+        }
+    }
+
+    private RenderFragment RenderG(Icons.GInfo gInfo)
+    {
+        return builder =>
+        {
+            builder.OpenElement(0, "g");
+            builder.AddAttribute(1, "class", gInfo.Class);
+            for (var i = 0; i < gInfo.PathInfos.Length; i++)
+            {
+                builder.AddContent(i + 2, RenderPath(gInfo.PathInfos[i]));
+            }
+            builder.CloseElement();
+        };
+    }
+}

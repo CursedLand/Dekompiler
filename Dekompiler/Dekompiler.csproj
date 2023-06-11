@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Dekompiler.Core\Dekompiler.Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\images\class.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\delegate.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\enum.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\event.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\field.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\interface.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\method.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\namespace.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\property.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\images\struct.png" />
+    </ItemGroup>
+
+    <!--<ItemGroup>
+      <ProjectReference Include="..\Dekompiler.Images\Dekompiler.Images.csproj" />
+    </ItemGroup>-->
+
+</Project>
