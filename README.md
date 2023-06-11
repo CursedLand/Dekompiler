@@ -33,3 +33,4 @@ Dekompiler is work-in-progress .NET decompiler that converts Cil to C# code.
 
 # Credits
 [Washi](https://github.com/Washi1337) for [AsmResolver](https://github.com/Washi1337/AsmResolver)
+[0xd4d](https://github.com/0xd4d) for [dnSpy](https://github.com/0xd4d/dnSpy) CodeTheme palettes.
