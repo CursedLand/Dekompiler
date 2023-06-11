@@ -1,0 +1,10 @@
+﻿<Application x:Class="Dekompiler.Desktop.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Dekompiler.Desktop"
+             StartupUri="MainWindow.xaml"
+             Startup="StartupSetup">
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>
